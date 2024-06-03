@@ -1,6 +1,0 @@
-@P2_EnricoEMedina_HostAddress = http://localhost:5252
-
-GET {{P2_EnricoEMedina_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

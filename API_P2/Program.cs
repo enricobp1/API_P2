@@ -1,5 +1,5 @@
 
-namespace P2_EnricoEMedina
+namespace API_P2
 {
     public class Program
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace P2_EnricoEMedina.Migrations
+namespace API_P2.Migrations
 {
     /// <inheritdoc />
     public partial class migration1 : Migration
@@ -11,53 +11,45 @@ namespace P2_EnricoEMedina.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ItemPedido",
+                name: "Entrega",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Valor = table.Column<double>(type: "float", nullable: false)
+                    Motorista = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Observacao = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemPedido", x => x.Id);
+                    table.PrimaryKey("PK_Entrega", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pedido",
+                name: "Veiculos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ItemPedidoId = table.Column<int>(type: "int", nullable: false)
+                    Veiculo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Autonomia = table.Column<int>(type: "int", nullable: false),
+                    Capacidade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pedido", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pedido_ItemPedido_ItemPedidoId",
-                        column: x => x.ItemPedidoId,
-                        principalTable: "ItemPedido",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Veiculos", x => x.Id);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedido_ItemPedidoId",
-                table: "Pedido",
-                column: "ItemPedidoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pedido");
+                name: "Entrega");
 
             migrationBuilder.DropTable(
-                name: "ItemPedido");
+                name: "Veiculos");
         }
     }
 }
